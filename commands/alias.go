@@ -10,6 +10,7 @@ import (
 
 var alias_command = cli.Command{
 	Name:        "alias",
+	Usage:       "Assign aliases for groups of lights.",
 	Description: "Configures an alias for a group of lights which should be changed together.",
 	Action: func(c *cli.Context) error {
 		cfg, err := config.Load()

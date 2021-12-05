@@ -11,6 +11,10 @@ import (
 )
 
 func Set(c *cli.Context) error {
+	if c.NArg() == 0 {
+		return c.App.Command("help").Run(c)
+	}
+
 	bridge, err := GetBridge()
 	if err != nil {
 		return err
