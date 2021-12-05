@@ -10,8 +10,8 @@ This app is for you, it's a lightweight command line client which lets you
 control your Hue lights with minimal fuss and no extra effort.
 
 ```powershell
-# Install the Hue CLI
-go install github.com/sierrasoftworks/hue
+# Install the latest version of the Hue CLI
+go install github.com/sierrasoftworks/hue@latest
 
 # Connect to your Hue bridge
 hue setup
