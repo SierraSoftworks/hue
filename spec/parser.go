@@ -13,6 +13,8 @@ func ParseState(spec string) (huego.State, error) {
 
 	for _, s := range strings.Split(spec, ",") {
 		switch s {
+		case "":
+			continue
 		case "on":
 			return huego.State{On: true}, nil
 		case "off":
