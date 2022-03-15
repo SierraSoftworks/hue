@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/amimof/huego v1.2.1
 	github.com/lucasb-eyer/go-colorful v1.2.0
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.7.1
 	github.com/urfave/cli/v2 v2.3.0
 	github.com/zalando/go-keyring v0.2.0
 )
