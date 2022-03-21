@@ -7,7 +7,7 @@ require (
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/stretchr/testify v1.7.1
 	github.com/urfave/cli/v2 v2.4.0
-	github.com/zalando/go-keyring v0.2.0
+	github.com/zalando/go-keyring v0.2.1
 )
 
 require (
