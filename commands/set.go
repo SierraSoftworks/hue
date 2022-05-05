@@ -2,10 +2,10 @@ package commands
 
 import (
 	"fmt"
+	"github.com/sierrasoftworks/humane-errors-go"
 	"strings"
 
 	"github.com/sierrasoftworks/hue/config"
-	"github.com/sierrasoftworks/hue/humanerrors"
 	"github.com/sierrasoftworks/hue/spec"
 	"github.com/urfave/cli/v2"
 )
@@ -28,7 +28,7 @@ func Set(c *cli.Context) error {
 	for _, set := range c.Args().Slice() {
 		parts := strings.SplitN(set, "=", 2)
 		if len(parts) != 2 {
-			return humanerrors.New(
+			return humane.New(
 				fmt.Sprintf("'%s' is not a valid target and state specifier.", set),
 				"Try setting a light's state to on with '#1=on'",
 				"Try setting the brightness of a light with 'bedroom=30%'",
@@ -52,7 +52,14 @@ func Set(c *cli.Context) error {
 		}
 
 		for _, light := range lights {
-			bridge.SetLightState(light, state)
+
+			if _, err := bridge.SetLightState(light, state); err != nil {
+				return humane.Wrap(
+					err,
+					"Unable to set the light state due to an error.",
+					"Make sure that you have network connectivity to the Hue bridge.",
+				)
+			}
 		}
 	}
 

@@ -18,5 +18,6 @@ require (
 	github.com/godbus/dbus/v5 v5.0.6 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
+	github.com/sierrasoftworks/humane-errors-go v0.0.0-20220505231050-987c0f469f34 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )

@@ -3,10 +3,9 @@ package config
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/sierrasoftworks/humane-errors-go"
 	"os"
 	"path/filepath"
-
-	"github.com/sierrasoftworks/hue/humanerrors"
 )
 
 type Config struct {
@@ -16,7 +15,7 @@ type Config struct {
 func Save(config *Config) error {
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return humanerrors.NewWithCause(
+		return humane.Wrap(
 			err,
 			"Could not determine user home directory",
 		)
@@ -24,7 +23,7 @@ func Save(config *Config) error {
 
 	err = os.MkdirAll(filepath.Join(home, ".hue"), 0755)
 	if err != nil {
-		return humanerrors.NewWithCause(
+		return humane.Wrap(
 			err,
 			fmt.Sprintf("Could not create configuration directory '%s'", filepath.Join(home, ".hue")),
 			"Make sure that you have permission to write to the configuration directory.",
@@ -33,19 +32,23 @@ func Save(config *Config) error {
 
 	f, err := os.OpenFile(filepath.Join(home, ".hue", "config.json"), os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
-		return humanerrors.NewWithCause(
+		return humane.Wrap(
 			err,
 			fmt.Sprintf("Failed to open configuration file '%s'", filepath.Join(home, ".hue", "config.json")),
 			"Make sure that the file exists and is readable by your current user.",
 		)
 	}
 
+	//goland:noinspection GoUnhandledErrorResult
 	defer f.Close()
 
-	f.Truncate(0)
+	err = f.Truncate(0)
+	if err != nil {
+		return humane.Wrap(err, "Failed to truncate configuration file.", "Make sure that you have permission to write to the configuration file.")
+	}
 	err = json.NewEncoder(f).Encode(config)
 	if err != nil {
-		return humanerrors.NewWithCause(
+		return humane.Wrap(
 			err,
 			"Failed to write configuration file.",
 			"Make sure that you have permission to write to the configuration file.",
@@ -58,7 +61,7 @@ func Save(config *Config) error {
 func Load() (*Config, error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return nil, humanerrors.NewWithCause(
+		return nil, humane.Wrap(
 			err,
 			"Could not determine user home directory",
 		)
@@ -74,18 +77,19 @@ func Load() (*Config, error) {
 			return &config, nil
 		}
 
-		return nil, humanerrors.NewWithCause(
+		return nil, humane.Wrap(
 			err,
 			fmt.Sprintf("Failed to open configuration file '%s'", filepath.Join(home, ".hue", "config.json")),
 			"Make sure that the file exists and is readable by your current user.",
 		)
 	}
 
+	//goland:noinspection GoUnhandledErrorResult
 	defer f.Close()
 
 	err = json.NewDecoder(f).Decode(&config)
 	if err != nil {
-		return nil, humanerrors.NewWithCause(
+		return nil, humane.Wrap(
 			err,
 			"Failed to parse configuration file.",
 			"Make sure that your configuration file contains valid JSON and try again.",

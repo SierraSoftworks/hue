@@ -2,11 +2,11 @@ package spec
 
 import (
 	"fmt"
+	"github.com/sierrasoftworks/humane-errors-go"
 	"math"
 
 	"github.com/amimof/huego"
 	"github.com/lucasb-eyer/go-colorful"
-	"github.com/sierrasoftworks/hue/humanerrors"
 )
 
 func resolveKnownColourAlias(spec string) string {
@@ -20,7 +20,7 @@ func resolveKnownColourAlias(spec string) string {
 func parseHexColour(spec string, state *huego.State) error {
 	colour, err := colorful.Hex(spec)
 	if err != nil {
-		return humanerrors.NewWithCause(
+		return humane.Wrap(
 			err,
 			fmt.Sprintf("Failled to parse '%s' as a valid Hex RGB colour.", spec),
 			"Enter your chosen colour in three (#873) or six (#91824a) digit hex format.",

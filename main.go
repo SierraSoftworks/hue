@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"github.com/sierrasoftworks/humane-errors-go"
 	"os"
 
 	"github.com/sierrasoftworks/hue/commands"
@@ -23,7 +23,5 @@ func main() {
 	}
 
 	err := app.Run(os.Args)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error())
-	}
+	humane.Eprint(err)
 }

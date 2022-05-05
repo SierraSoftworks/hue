@@ -2,20 +2,22 @@ package spec
 
 import "math"
 
+// ReferenceGamut is the standard gamut used to represent colour on a full-spectrum light source.
 var ReferenceGamut = Gamut{
 	R: Point{1, 0},
 	G: Point{0, 1},
 	B: Point{0, 0},
 }
 
+// HueGamut is the reference gamut suggested by Phillips for the Hue light bulbs.
 var HueGamut = Gamut{
 	R: Point{0.675, 0.322},
 	G: Point{0.409, 0.518},
 	B: Point{0.167, 0.04},
 }
 
-// A custom gamut which attempts to approximate the human eye's perception
-// of colour on the Hue lightbulbs by reducing green slightly.
+// Hue2Gamut is a custom gamut which attempts to approximate the human eye's perception
+// of colour on the Hue light bulbs by reducing green slightly.
 var Hue2Gamut = Gamut{
 	R: Point{1, 0.0},
 	G: Point{0.0, 0.95},
@@ -54,7 +56,7 @@ type Gamut struct {
 	R, G, B Point
 }
 
-// Projects a point from a reference gamut onto this gamut by
+// Project a point from a reference gamut onto this gamut by
 // performing a series of linear transforms on it.
 func (g *Gamut) Project(p Point) Point {
 	// We calculate our relative position along the Red and Green vectors

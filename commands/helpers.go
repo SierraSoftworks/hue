@@ -2,11 +2,11 @@ package commands
 
 import (
 	"fmt"
+	"github.com/sierrasoftworks/humane-errors-go"
 	"strconv"
 	"strings"
 
 	"github.com/amimof/huego"
-	"github.com/sierrasoftworks/hue/humanerrors"
 )
 
 func getTargets(targets []string, bridge *huego.Bridge) ([]int, error) {
@@ -20,7 +20,7 @@ func getTargets(targets []string, bridge *huego.Bridge) ([]int, error) {
 			if allLights == nil {
 				lights, err := bridge.GetLights()
 				if err != nil {
-					return nil, humanerrors.NewWithCause(
+					return nil, humane.Wrap(
 						err,
 						"Failed to retrieve lights from your Hue bridge.",
 						"Make sure that your Hue bridge is online and reachable from this device.",
@@ -45,7 +45,7 @@ func getTargets(targets []string, bridge *huego.Bridge) ([]int, error) {
 			if allGroups == nil {
 				groups, err := bridge.GetGroups()
 				if err != nil {
-					return nil, humanerrors.NewWithCause(
+					return nil, humane.Wrap(
 						err,
 						"Failed to retrieve light groups from your Hue bridge.",
 						"Make sure that your Hue bridge is online and reachable from this device.",
@@ -64,7 +64,7 @@ func getTargets(targets []string, bridge *huego.Bridge) ([]int, error) {
 					for _, light := range group.Lights {
 						id, err := strconv.Atoi(light)
 						if err != nil {
-							return nil, humanerrors.NewWithCause(
+							return nil, humane.Wrap(
 								err,
 								fmt.Sprintf("group %s contains invalid light id %s", group.Name, light),
 								"Make sure that your Hue bridge is configured correctly.",
@@ -80,7 +80,7 @@ func getTargets(targets []string, bridge *huego.Bridge) ([]int, error) {
 			}
 
 			if !found {
-				return nil, humanerrors.New(
+				return nil, humane.New(
 					fmt.Sprintf("Could not find the Hue light group '%s'", arg),
 					"Run `hue list` to view the full list of groups supported by your Hue bridge.",
 					"If you are trying to turn on a specific light, remember to prefix its ID with the '#' symbol (i.e. #5).",

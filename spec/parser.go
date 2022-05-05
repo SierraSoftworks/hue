@@ -2,10 +2,10 @@ package spec
 
 import (
 	"fmt"
+	"github.com/sierrasoftworks/humane-errors-go"
 	"strings"
 
 	"github.com/amimof/huego"
-	"github.com/sierrasoftworks/hue/humanerrors"
 )
 
 func ParseState(spec string) (huego.State, error) {
@@ -34,7 +34,7 @@ func ParseState(spec string) (huego.State, error) {
 				return state, err
 			}
 		} else {
-			return state, humanerrors.New(
+			return state, humane.New(
 				fmt.Sprintf("'%s' is not a valid light state.", s),
 				"Try 'on', 'off', or a percentage brightness between 0% and 100%.",
 			)
