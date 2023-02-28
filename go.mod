@@ -6,7 +6,7 @@ require (
 	github.com/amimof/huego v1.2.1
 	github.com/lucasb-eyer/go-colorful v1.2.0
 	github.com/sierrasoftworks/humane-errors-go v0.0.0-20220505231050-987c0f469f34
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	github.com/urfave/cli/v2 v2.24.4
 	github.com/zalando/go-keyring v0.2.2
 )
