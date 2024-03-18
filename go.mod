@@ -8,7 +8,7 @@ require (
 	github.com/sierrasoftworks/humane-errors-go v0.0.0-20220505231050-987c0f469f34
 	github.com/stretchr/testify v1.9.0
 	github.com/urfave/cli/v2 v2.27.1
-	github.com/zalando/go-keyring v0.2.3
+	github.com/zalando/go-keyring v0.2.4
 )
 
 require (
