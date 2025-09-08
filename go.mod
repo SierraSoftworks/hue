@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/amimof/huego v1.2.1
-	github.com/lucasb-eyer/go-colorful v1.2.0
+	github.com/lucasb-eyer/go-colorful v1.3.0
 	github.com/sierrasoftworks/humane-errors-go v0.0.0-20220505231050-987c0f469f34
 	github.com/stretchr/testify v1.11.1
 	github.com/urfave/cli/v2 v2.27.7
