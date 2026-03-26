@@ -1,6 +1,6 @@
 module github.com/sierrasoftworks/hue
 
-go 1.17
+go 1.21
 
 require (
 	github.com/amimof/huego v1.2.1
