@@ -9,6 +9,13 @@ of the day?
 This app is for you, it's a lightweight command line client which lets you
 control your Hue lights with minimal fuss and no extra effort.
 
+## Installation
+Install with [Homebrew](https://brew.sh):
+
+```sh
+brew install sierrasoftworks/tap/hue
+```
+
 ```powershell
 # Install the latest version of the Hue CLI
 go install github.com/sierrasoftworks/hue@latest
