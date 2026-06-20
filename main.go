@@ -8,9 +8,13 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+// version is overridden at build time via -ldflags "-X main.version=...".
+var version = "dev"
+
 func main() {
 	app := &cli.App{
 		Name:        "hue",
+		Version:     version,
 		Usage:       "Set your light states",
 		Description: "Control your Philips Hue lights from your command line.",
 		Authors: []*cli.Author{
