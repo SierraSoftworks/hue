@@ -6,7 +6,7 @@ require (
 	github.com/amimof/huego v1.2.1
 	github.com/lucasb-eyer/go-colorful v1.4.1
 	github.com/sierrasoftworks/humane-errors-go v0.0.0-20220505231050-987c0f469f34
-	github.com/stretchr/testify v1.12.0
+	github.com/stretchr/testify v1.12.1
 	github.com/urfave/cli/v2 v2.27.7
 	github.com/zalando/go-keyring v0.2.8
 )
@@ -17,6 +17,6 @@ require (
 	github.com/godbus/dbus/v5 v5.2.2 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/sys v0.27.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
